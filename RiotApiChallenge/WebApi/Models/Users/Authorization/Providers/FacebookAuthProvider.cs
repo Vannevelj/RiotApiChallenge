@@ -1,6 +1,5 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.Owin.Security.Facebook;
 
 namespace WebApi.Models.Users.Authorization.Providers
 {

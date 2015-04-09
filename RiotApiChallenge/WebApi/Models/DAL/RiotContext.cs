@@ -8,10 +8,6 @@ namespace WebApi.Models.DAL
 {
     public class RiotContext : IdentityDbContext<ApplicationUser>
     {
-        public RiotContext() : base(/*"name=riotcontext"*/)
-        {
-        }
-
         public DbSet<ClientApplication> ClientApplications { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
 
