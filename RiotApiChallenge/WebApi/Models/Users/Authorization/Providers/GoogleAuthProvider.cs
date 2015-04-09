@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.Owin.Security.Google;
 
 namespace WebApi.Models.Users.Authorization.Providers
 {
