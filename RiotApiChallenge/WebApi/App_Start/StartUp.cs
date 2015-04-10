@@ -27,6 +27,7 @@ namespace WebApi.App_Start
             var configuration = new HttpConfiguration();
             var container = new UnityContainer();
             container.RegisterType<IUserRepository, UserRepository>(new TransientLifetimeManager());
+            container.RegisterType<IGameRepository, GameRepository>(new TransientLifetimeManager());
             container.RegisterInstance(new RiotContext());
             configuration.DependencyResolver = new UnityConfig(container);
             return configuration;

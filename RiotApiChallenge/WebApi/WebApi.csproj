@@ -174,11 +174,15 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\RefreshTokenController.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\DAL\GameRepository.cs" />
+    <Compile Include="Models\DAL\Interfaces\IGameRepository.cs" />
     <Compile Include="Models\DAL\Interfaces\IUserRepository.cs" />
     <Compile Include="Models\DAL\RiotContext.cs" />
     <Compile Include="Models\DAL\UserRepository.cs" />
+    <Compile Include="Models\Riot\Game.cs" />
     <Compile Include="Models\Users\ApplicationUser.cs" />
     <Compile Include="Models\Users\Authorization\ApplicationType.cs" />
     <Compile Include="Models\Users\Authorization\ClientApplication.cs" />

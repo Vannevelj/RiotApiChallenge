@@ -13,7 +13,7 @@ namespace WebApi.Migrations
 
         protected override void Seed(RiotContext context)
         {
-            context.ClientApplications.Add(new ClientApplication
+            context.ClientApplications.AddOrUpdate(new ClientApplication
             {
                 Id = "default_web",
                 IsActive = true,
