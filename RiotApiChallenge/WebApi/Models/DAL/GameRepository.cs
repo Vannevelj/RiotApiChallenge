@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using WebApi.Models.DAL.Interfaces;
 using WebApi.Models.Riot;
+using WebApi.Models.Utilities;
 
 namespace WebApi.Models.DAL
 {
@@ -22,27 +24,25 @@ namespace WebApi.Models.DAL
 
         public async Task<IEnumerable<Game>> GetGamesAsync()
         {
-            // Check if database has recent games 
-            // If yes: return data from database
-            // If not: query api and store in database
-
-            var games = new List<Game>();
+            var lastDate = _context.Games.Select(x => x.PlayedOn).Distinct().OrderByDescending(x => x).FirstOrDefault() ?? new DateTime(2015, 04, 1, 08, 00, 00);
+            lastDate = lastDate.AddMinutes(5);
 
             using (var client = new HttpClient())
             {
                 // Epoch representation of the date we want to query. 
                 // More details: https://developer.riotgames.com/api/methods#!/980/3340
-                var randomDate = (new DateTime(2015, 04, 1, 12, 00, 00).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-                var matchIdsUrl = BaseGameIdsUrl + "?api_key=" + ApiKey + "&beginDate=" + randomDate;
+                var matchIdsUrl = BaseGameIdsUrl + "?api_key=" + ApiKey + "&beginDate=" + lastDate.ToUnixTime();
 
                 var matchIds = JsonConvert.DeserializeObject<IEnumerable<int>>(await (await client.GetAsync(matchIdsUrl)).Content.ReadAsStringAsync());
 
-                foreach (var id in matchIds)
+                var games = new List<Game>();
+                foreach (var id in matchIds.Where(x => !_context.Games.Any(y => x == y.MatchId))) // Verify game isn't inserted yet
                 {
                     var gameRequest = await client.GetAsync(BaseMatchUrl + id + "?api_key=" + ApiKey);
                     var game = JsonConvert.DeserializeObject<Game>(await gameRequest.Content.ReadAsStringAsync());
+                    game.PlayedOn = lastDate;
 
-                    if (!string.IsNullOrWhiteSpace(game.Region)) // Null objects being returned for some reason
+                    if (!string.IsNullOrWhiteSpace(game.Region))
                     {
                         _context.Games.Add(game);
                         games.Add(game);

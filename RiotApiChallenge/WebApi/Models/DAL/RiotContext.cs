@@ -37,6 +37,7 @@ namespace WebApi.Models.DAL
             modelBuilder.Entity<RefreshToken>().HasRequired(x => x.ClientApplication).WithMany().HasForeignKey(x => x.ClientApplicationId);
 
             modelBuilder.Entity<Game>().HasKey(x => x.MatchId);
+            modelBuilder.Entity<Game>().Property(x => x.MatchId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Game>().HasMany(x => x.Participants).WithMany().Map(x =>
             {
                 x.ToTable("GameParticipants");

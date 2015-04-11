@@ -183,6 +183,8 @@
     <Compile Include="Models\DAL\RiotContext.cs" />
     <Compile Include="Models\DAL\UserRepository.cs" />
     <Compile Include="Models\Riot\Game.cs" />
+    <Compile Include="Models\Riot\Participant.cs" />
+    <Compile Include="Models\Riot\Team.cs" />
     <Compile Include="Models\Users\ApplicationUser.cs" />
     <Compile Include="Models\Users\Authorization\ApplicationType.cs" />
     <Compile Include="Models\Users\Authorization\ClientApplication.cs" />
@@ -196,6 +198,7 @@
     <Compile Include="Models\Users\UserModel.cs" />
     <Compile Include="Models\Utilities\AuthorizationHelpers.cs" />
     <Compile Include="Models\Users\ExternalLoginModels.cs" />
+    <Compile Include="Models\Utilities\Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
