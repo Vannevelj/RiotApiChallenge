@@ -199,6 +199,7 @@
     <Compile Include="Models\Utilities\AuthorizationHelpers.cs" />
     <Compile Include="Models\Users\ExternalLoginModels.cs" />
     <Compile Include="Models\Utilities\Extensions.cs" />
+    <Compile Include="Models\ValidationModels\AnswerSubmission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

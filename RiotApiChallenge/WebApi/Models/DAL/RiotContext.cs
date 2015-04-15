@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using WebApi.Models.Riot;
 using WebApi.Models.Users;
 using WebApi.Models.Users.Authorization;
+using WebApi.Models.ValidationModels;
 
 namespace WebApi.Models.DAL
 {
@@ -57,6 +58,19 @@ namespace WebApi.Models.DAL
 
             modelBuilder.Entity<Team>().HasKey(x => x.InternalTeamId);
             modelBuilder.Entity<Team>().Property(x => x.InternalTeamId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
+            modelBuilder.Entity<AnswerSubmission>().ToTable("Answers");
+            modelBuilder.Entity<AnswerSubmission>().HasKey(x => x.AnswerId);
+            modelBuilder.Entity<AnswerSubmission>().Property(x => x.AnswerId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<AnswerSubmission>().Property(x => x.MatchId).IsRequired();
+            modelBuilder.Entity<AnswerSubmission>().Property(x => x.WinningTeamId).IsRequired();
+
+            modelBuilder.Entity<ApplicationUser>().HasMany(x => x.Answers).WithMany().Map(x =>
+            {
+                x.ToTable("UserAnswers");
+                x.MapLeftKey("UserId");
+                x.MapRightKey("AnswerId");
+            });
         }
     }
 }

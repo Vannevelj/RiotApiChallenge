@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using Newtonsoft.Json;
 using WebApi.Models.DAL.Interfaces;
 using WebApi.Models.Riot;
 using WebApi.Models.Utilities;
+using WebApi.Models.ValidationModels;
 
 namespace WebApi.Models.DAL
 {
@@ -51,6 +53,37 @@ namespace WebApi.Models.DAL
                 await _context.SaveChangesAsync();
                 return games;
             }
+        }
+
+        public async Task<bool> InsertAnswerAsync(AnswerSubmission answer, string userId)
+        {
+            answer.IsCorrect = false;
+
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.Id == userId);
+            if (user == null)
+            {
+                return false;
+            }
+
+            if (user.Answers.Any(x => x.MatchId == answer.MatchId))
+            {
+                return false;
+            }
+
+            var match = await _context.Games.FindAsync(answer.MatchId);
+            if (match == null)
+            {
+                return false;
+            }
+
+            if (match.Teams.Single(x => x.Winner).TeamId == answer.WinningTeamId)
+            {
+                answer.IsCorrect = true;
+            }
+
+            user.Answers.Add(answer);
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }
