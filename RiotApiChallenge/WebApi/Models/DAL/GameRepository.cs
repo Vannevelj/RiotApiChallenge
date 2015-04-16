@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 using WebApi.Models.DAL.Interfaces;
 using WebApi.Models.Riot;
 using WebApi.Models.Utilities;
-using WebApi.Models.ValidationModels;
+using WebApi.Models.Viewmodels;
 
 namespace WebApi.Models.DAL
 {
@@ -84,6 +84,22 @@ namespace WebApi.Models.DAL
             user.Answers.Add(answer);
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<IEnumerable<Highscore>> GetHighscoresAsync(int page, int pageSize)
+        {
+            var results = (from user in _context.Users
+                           let score = (from answer in user.Answers
+                                        where answer.IsCorrect
+                                        select answer).Count()
+                           orderby score descending
+                           select new Highscore
+                           {
+                               Score = score,
+                               Username = user.UserName
+                           }).Skip((page - 1)*pageSize).Take(pageSize);
+
+            return await results.ToArrayAsync();
         }
     }
 }

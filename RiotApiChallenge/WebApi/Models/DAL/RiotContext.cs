@@ -4,7 +4,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using WebApi.Models.Riot;
 using WebApi.Models.Users;
 using WebApi.Models.Users.Authorization;
-using WebApi.Models.ValidationModels;
+using WebApi.Models.Viewmodels;
 
 namespace WebApi.Models.DAL
 {

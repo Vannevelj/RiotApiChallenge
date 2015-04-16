@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNet.Identity.EntityFramework;
-using WebApi.Models.ValidationModels;
+using WebApi.Models.Viewmodels;
 
 namespace WebApi.Models.Users
 {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace WebApi.Models.ValidationModels
+namespace WebApi.Models.Viewmodels
 {
     public class AnswerSubmission
     {

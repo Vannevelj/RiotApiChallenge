@@ -6,7 +6,7 @@ using System.Web.Http.Description;
 using WebApi.Models.DAL;
 using WebApi.Models.DAL.Interfaces;
 using WebApi.Models.Riot;
-using WebApi.Models.ValidationModels;
+using WebApi.Models.Viewmodels;
 
 namespace WebApi.Controllers
 {
@@ -47,6 +47,14 @@ namespace WebApi.Controllers
             }
 
             return BadRequest();
+        }
+
+        [Route("highscores")]
+        [HttpGet]
+        [ResponseType(typeof (IEnumerable<Highscore>))]
+        public async Task<IHttpActionResult> GetHighScores([FromUri] int page, [FromUri] int pageSize)
+        {
+            return Ok(await _gameRepository.GetHighscoresAsync(page, pageSize));
         }
     }
 }
