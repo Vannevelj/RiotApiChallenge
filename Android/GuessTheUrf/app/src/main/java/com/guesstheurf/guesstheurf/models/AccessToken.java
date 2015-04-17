@@ -18,7 +18,7 @@ public class AccessToken {
     @JsonProperty("refresh_token")
     private String refreshToken;
 
-    @JsonProperty("client_id")
+    @JsonProperty("as:client_id")
     private String clientId;
 
     @JsonProperty("username")
@@ -29,6 +29,8 @@ public class AccessToken {
 
     @JsonProperty(".expires")
     private String expiresAt;
+
+    public AccessToken(){ }
 
     public AccessToken(String accessToken, String tokenType, int expiresIn, String refreshToken, String clientId, String username, String issuedAt, String expiresAt) {
         this.accessToken = accessToken;

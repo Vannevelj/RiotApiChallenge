@@ -1,4 +1,4 @@
-package com.guesstheurf.guesstheurf;
+package com.guesstheurf.guesstheurf.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -7,11 +7,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import com.guesstheurf.guesstheurf.R;
 import com.guesstheurf.guesstheurf.models.LoginInfo;
 import com.guesstheurf.guesstheurf.tasks.LoginTask;
 
 
-public class Login extends ActionBarActivity {
+public class LoginActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
