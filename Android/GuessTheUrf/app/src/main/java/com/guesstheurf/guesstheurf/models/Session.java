@@ -15,6 +15,7 @@ public enum Session {
 
     private AccessToken accessToken;
     private List<Game> games = new ArrayList<>();
+    private List<Highscore> highscores = new ArrayList<>();
     private int gamesDone = 0;
 
     public AccessToken getAccessToken() {
@@ -23,6 +24,15 @@ public enum Session {
 
     public void setAccessToken(AccessToken accessToken) {
         this.accessToken = accessToken;
+    }
+
+    public void setHighscores(List<Highscore> highscores) {
+        this.highscores.clear();
+        this.highscores.addAll(highscores);
+    }
+
+    public List<Highscore> getHighscores() {
+        return highscores;
     }
 
     public Game getNewGame(Context fromContext) {

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -68,12 +67,12 @@ public class GameFragment extends android.support.v4.app.Fragment {
         addButtonListeners(layout);
 
         ListView leftTeamList = (ListView) layout.findViewById(R.id.leftTeam);
-        ArrayAdapter<Participant> leftTeamAdapter = new ChampionAdapter(getActivity(), R.layout.champion_info, leftTeam);
+        ChampionAdapter leftTeamAdapter = new ChampionAdapter(getActivity(), R.layout.champion_info, leftTeam);
         leftTeamList.setAdapter(leftTeamAdapter);
         setListViewHeightBasedOnChildren(leftTeamList);
 
         ListView rightTeamList = (ListView) layout.findViewById(R.id.rightTeam);
-        ArrayAdapter<Participant> rightTeamAdapter = new ChampionAdapter(getActivity(), R.layout.champion_info, rightTeam);
+        ChampionAdapter rightTeamAdapter = new ChampionAdapter(getActivity(), R.layout.champion_info, rightTeam);
         rightTeamList.setAdapter(rightTeamAdapter);
         setListViewHeightBasedOnChildren(rightTeamList);
 
