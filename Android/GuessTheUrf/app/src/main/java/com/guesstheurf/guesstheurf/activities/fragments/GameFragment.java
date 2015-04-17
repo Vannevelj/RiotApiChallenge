@@ -15,9 +15,11 @@ import android.widget.Toast;
 
 import com.guesstheurf.guesstheurf.R;
 import com.guesstheurf.guesstheurf.activities.adapters.ChampionAdapter;
+import com.guesstheurf.guesstheurf.models.Answer;
 import com.guesstheurf.guesstheurf.models.Session;
 import com.guesstheurf.guesstheurf.models.riot.Game;
 import com.guesstheurf.guesstheurf.models.riot.Participant;
+import com.guesstheurf.guesstheurf.tasks.SendScoreTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,6 +107,8 @@ public class GameFragment extends android.support.v4.app.Fragment {
         }
 
         //TODO: send win to server
+        Answer answer = new Answer(currentGame.getMatchId(), teamId);
+        new SendScoreTask().execute(answer);
 
         //Populate with new game
         getActivity().findViewById(R.id.gameFragment).invalidate();
