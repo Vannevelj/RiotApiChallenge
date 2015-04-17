@@ -4,6 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+
+import com.guesstheurf.guesstheurf.models.LoginInfo;
+import com.guesstheurf.guesstheurf.tasks.LoginTask;
 
 
 public class Login extends ActionBarActivity {
@@ -12,6 +17,14 @@ public class Login extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+    }
+
+    public void onLoginButtonClicked(View view) {
+        String username = ((EditText) findViewById(R.id.username)).getText().toString();
+        String password = ((EditText) findViewById(R.id.password)).getText().toString();
+        LoginInfo loginInfo = new LoginInfo(username, password);
+
+        new LoginTask(this).execute(loginInfo);
     }
 
 

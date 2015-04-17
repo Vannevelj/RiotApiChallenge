@@ -46,7 +46,8 @@
             android:layout_margin="4dp"
             android:text="Sign in"
             style="@style/DefaultButtonText"
-            android:background="@drawable/button_default_bg" />
+            android:background="@drawable/button_default_bg"
+            android:onClick="onLoginButtonClicked" />
 
     </LinearLayout>
 
