@@ -101,9 +101,9 @@ public class GameFragment extends android.support.v4.app.Fragment {
     private void sendWin(int teamId) {
         int winningTeamId = currentGame.getTeams().get(0).isWinner() ? currentGame.getTeams().get(0).getTeamId() : currentGame.getTeams().get(1).getTeamId();
         if (teamId == winningTeamId) {
-            Toast.makeText(getActivity(), "Correct!", Toast.LENGTH_SHORT);
+            Toast.makeText(getActivity(), "Correct!", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getActivity(), "You suck!", Toast.LENGTH_SHORT);
+            Toast.makeText(getActivity(), "You suck!", Toast.LENGTH_SHORT).show();
         }
 
         //TODO: send win to server
