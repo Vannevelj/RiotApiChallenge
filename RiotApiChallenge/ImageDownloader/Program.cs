@@ -34,7 +34,7 @@ namespace ImageDownloader
                     {
                         using (var bitmap = new Bitmap(image))
                         {
-                            var location = string.Format("C:\\Temp\\{0}.png", champion);
+                            var location = string.Format("C:\\Temp\\champion_{0}.png", champion.ToLower());
                             bitmap.Save(location, ImageFormat.Png);
 
                             Console.WriteLine("Saved {0} to {1}", champion, location);
