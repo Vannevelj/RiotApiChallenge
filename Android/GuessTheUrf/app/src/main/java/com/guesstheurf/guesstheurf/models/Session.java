@@ -42,8 +42,4 @@ public enum Session {
 
         return games.get(gamesDone++);
     }
-
-    public void addGames(List<Game> games) {
-        this.games.addAll(games);
-    }
 }
