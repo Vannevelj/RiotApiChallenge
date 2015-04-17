@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.guesstheurf.guesstheurf.activities.MainActivity;
 import com.guesstheurf.guesstheurf.models.AccessToken;
 import com.guesstheurf.guesstheurf.models.LoginInfo;
+import com.guesstheurf.guesstheurf.models.Session;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -53,7 +54,7 @@ public class LoginTask extends AsyncTask<LoginInfo, Void, AccessToken> {
         if (accessToken == null) {
             Toast.makeText(context, "Something went wrong. Please try again later.", Toast.LENGTH_LONG).show();
         } else {
-            //TODO: save login info in session object
+            Session.INSTANCE.setAccessToken(accessToken);
             Toast.makeText(context, "Happy to see you again, " + accessToken.getUsername(), Toast.LENGTH_LONG).show();
             context.startActivity(new Intent(context, MainActivity.class));
         }

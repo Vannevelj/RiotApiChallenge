@@ -3,8 +3,10 @@ package com.guesstheurf.guesstheurf.models.riot;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Team implements Parcelable {
     @JsonProperty("TeamId")
     private int teamId;

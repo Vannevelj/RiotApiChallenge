@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:rowCount="2"
+    android:columnCount="2">
+
+    <ImageView
+        android:id="@+id/championIcon"
+        android:src="@drawable/champion_103"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_rowSpan="2"
+        android:layout_columnSpan="1" />
+
+    <ImageView
+        android:id="@+id/firstSummonerSpell"
+        android:src="@drawable/summonerspell_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_rowSpan="1"
+        android:maxHeight="60dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true" />
+
+    <ImageView
+        android:id="@+id/secondSummonerSpell"
+        android:src="@drawable/summonerspell_14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_rowSpan="1"
+        android:maxHeight="60dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true" />
+</GridLayout>

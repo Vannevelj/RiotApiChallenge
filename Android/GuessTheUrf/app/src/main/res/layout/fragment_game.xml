@@ -2,14 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.guesstheurf.guesstheurf.activities.fragments.GameFragment"
-    >
+    tools:context="com.guesstheurf.guesstheurf.activities.fragments.GameFragment">
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/leftTeam"
+            android:id="@+id/leftTeamLayout"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -21,39 +21,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <ImageView
-                android:id="@+id/leftOne"
-                android:src="@drawable/champion_ryze"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <ImageView
-                android:id="@+id/leftTwo"
-                android:src="@drawable/champion_irelia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <ImageView
-                android:id="@+id/leftThree"
-                android:src="@drawable/champion_graves"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <ImageView
-                android:id="@+id/leftFour"
-                android:src="@drawable/champion_janna"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <ImageView
-                android:id="@+id/leftFive"
-                android:src="@drawable/champion_leesin"
+            <ListView
+                android:id="@+id/leftTeam"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/rightTeam"
+            android:id="@+id/rightTeamLayout"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -65,35 +40,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <ImageView
-                android:id="@+id/rightOne"
-                android:src="@drawable/champion_orianna"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <!--<ListView-->
+            <!--android:id="@+id/rightTeam"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
 
-            <ImageView
-                android:id="@+id/rightTwo"
-                android:src="@drawable/champion_maokai"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
 
-            <ImageView
-                android:id="@+id/rightThree"
-                android:src="@drawable/champion_vayne"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <ImageView
-                android:id="@+id/rightFour"
-                android:src="@drawable/champion_blitzcrank"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <ImageView
-                android:id="@+id/rightFive"
-                android:src="@drawable/champion_fiddlesticks"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>
