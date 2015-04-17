@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.guesstheurf.guesstheurf.R;
@@ -62,14 +64,43 @@ public class GameFragment extends android.support.v4.app.Fragment {
         }
 
         ListView leftTeamList = (ListView) layout.findViewById(R.id.leftTeam);
-        ArrayAdapter<Participant> leftTeamAdapter = new ChampionAdapter(this.getActivity(), R.layout.champion_info, leftTeam);
+        ArrayAdapter<Participant> leftTeamAdapter = new ChampionAdapter(getActivity(), R.layout.champion_info, leftTeam);
         leftTeamList.setAdapter(leftTeamAdapter);
+        setListViewHeightBasedOnChildren(leftTeamList);
 
-//        ListView rightTeamList = (ListView) getActivity().findViewById(R.id.rightTeam);
-//        ArrayAdapter<Participant> rightTeamAdapter = new ChampionAdapter(this.getActivity(), R.layout.champion_info, rightTeam);
-//        rightTeamList.setAdapter(rightTeamAdapter);
+        ListView rightTeamList = (ListView) layout.findViewById(R.id.rightTeam);
+        ArrayAdapter<Participant> rightTeamAdapter = new ChampionAdapter(getActivity(), R.layout.champion_info, rightTeam);
+        rightTeamList.setAdapter(rightTeamAdapter);
+        setListViewHeightBasedOnChildren(rightTeamList);
 
         return layout;
+    }
+
+    /*  Method for Setting the Height of the ListView dynamically.
+        Hack to fix the issue of not showing all the items of the ListView
+        when placed inside a ScrollView.
+        http://stackoverflow.com/a/19311197/1864167
+     */
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null)
+            return;
+
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+        int totalHeight = 0;
+        View view = null;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            view = listAdapter.getView(i, view, listView);
+            if (i == 0)
+                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, LinearLayout.LayoutParams.WRAP_CONTENT));
+
+            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += view.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
