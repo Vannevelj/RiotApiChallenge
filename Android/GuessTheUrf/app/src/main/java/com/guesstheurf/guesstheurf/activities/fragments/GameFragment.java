@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.guesstheurf.guesstheurf.R;
 import com.guesstheurf.guesstheurf.activities.adapters.ChampionAdapter;
@@ -45,8 +47,6 @@ public class GameFragment extends android.support.v4.app.Fragment {
 
         // Get new game
         currentGame = Session.INSTANCE.getNewGame(getActivity());
-
-
     }
 
     @Override
@@ -63,6 +63,8 @@ public class GameFragment extends android.support.v4.app.Fragment {
             }
         }
 
+        addButtonListeners(layout);
+
         ListView leftTeamList = (ListView) layout.findViewById(R.id.leftTeam);
         ArrayAdapter<Participant> leftTeamAdapter = new ChampionAdapter(getActivity(), R.layout.champion_info, leftTeam);
         leftTeamList.setAdapter(leftTeamAdapter);
@@ -74,6 +76,42 @@ public class GameFragment extends android.support.v4.app.Fragment {
         setListViewHeightBasedOnChildren(rightTeamList);
 
         return layout;
+    }
+
+    private void addButtonListeners(View view) {
+        Button leftWins = (Button) view.findViewById(R.id.leftTeamWinsButton);
+        leftWins.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendWin(100);
+            }
+        });
+
+        Button rightWins = (Button) view.findViewById(R.id.rightTeamWinsButton);
+        rightWins.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendWin(200);
+            }
+        });
+    }
+
+    private void sendWin(int teamId) {
+        int winningTeamId = currentGame.getTeams().get(0).isWinner() ? currentGame.getTeams().get(0).getTeamId() : currentGame.getTeams().get(1).getTeamId();
+        if (teamId == winningTeamId) {
+            Toast.makeText(getActivity(), "Correct!", Toast.LENGTH_SHORT);
+        } else {
+            Toast.makeText(getActivity(), "You suck!", Toast.LENGTH_SHORT);
+        }
+
+        //TODO: send win to server
+
+        //Populate with new game
+        getActivity().findViewById(R.id.gameFragment).invalidate();
+        currentGame = Session.INSTANCE.getNewGame(getActivity());
+        android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.gameFragment, new GameFragment());
+        transaction.commit();
     }
 
     /*  Method for Setting the Height of the ListView dynamically.
