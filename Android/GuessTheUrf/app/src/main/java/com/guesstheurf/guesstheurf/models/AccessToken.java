@@ -30,7 +30,8 @@ public class AccessToken {
     @JsonProperty(".expires")
     private String expiresAt;
 
-    public AccessToken(){ }
+    public AccessToken() {
+    }
 
     public AccessToken(String accessToken, String tokenType, int expiresIn, String refreshToken, String clientId, String username, String issuedAt, String expiresAt) {
         this.accessToken = accessToken;

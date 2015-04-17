@@ -1,10 +1,9 @@
 package com.guesstheurf.guesstheurf.activities;
 
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -20,7 +19,7 @@ public class MainActivity extends FragmentActivity implements HighscoreFragment.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_main);
 
         myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
         viewPager = (ViewPager) findViewById(R.id.pager);
@@ -29,8 +28,8 @@ public class MainActivity extends FragmentActivity implements HighscoreFragment.
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_game, menu);
-        return true;
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -46,6 +45,6 @@ public class MainActivity extends FragmentActivity implements HighscoreFragment.
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-        
+
     }
 }

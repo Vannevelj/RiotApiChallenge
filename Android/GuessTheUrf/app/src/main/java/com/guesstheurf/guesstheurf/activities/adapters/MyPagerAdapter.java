@@ -11,15 +11,15 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
     private GameFragment gameFragment = new GameFragment();
     private HighscoreFragment highscoreFragment = new HighscoreFragment();
 
-    public MyPagerAdapter(FragmentManager fragmentManager){
+    public MyPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
     }
 
     @Override
     public Fragment getItem(int position) {
-        if(position == 0){
+        if (position == 0) {
             return gameFragment;
-        } else if(position == 1){
+        } else if (position == 1) {
             return highscoreFragment;
         } else {
             return null;
@@ -32,10 +32,10 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
-    public CharSequence getPageTitle(int position){
-        if(position == 0){
+    public CharSequence getPageTitle(int position) {
+        if (position == 0) {
             return "Game";
-        } else if(position == 1){
+        } else if (position == 1) {
             return "Highscores";
         } else {
             return null;
