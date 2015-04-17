@@ -23,6 +23,7 @@ import java.util.List;
 
 public class HighscoreFragment extends android.support.v4.app.Fragment {
     private HighscoreAdapter highscoreAdapter;
+    private ListView highscoreList;
     private OnFragmentInteractionListener mListener;
 
 
@@ -45,7 +46,7 @@ public class HighscoreFragment extends android.support.v4.app.Fragment {
         View layout = inflater.inflate(R.layout.fragment_highscore, container, false);
         addButtonListeners(layout);
 
-        ListView highscoreList = (ListView) layout.findViewById(R.id.highscore_list);
+        highscoreList = (ListView) layout.findViewById(R.id.highscore_list);
         highscoreAdapter = new HighscoreAdapter(getActivity(), R.layout.highscore_entry, Session.INSTANCE.getHighscores());
         highscoreList.setAdapter(highscoreAdapter);
         setListViewHeightBasedOnChildren(highscoreList);
@@ -86,7 +87,7 @@ public class HighscoreFragment extends android.support.v4.app.Fragment {
         });
     }
 
-    private void updateHighscores(){
+    private void updateHighscores() {
         Log.d("AYOOOOOOO", "NOOOOOOO BAAAAAAAAD");
         HighscoreRequestParameters parameters = new HighscoreRequestParameters(1, 10);
         GetHighscoresTask task = new GetHighscoresTask();
@@ -94,7 +95,7 @@ public class HighscoreFragment extends android.support.v4.app.Fragment {
         try {
             List<Highscore> highscores = task.get(); // TODO: ASYNCHONRINICINIKRAZF?A PLEASE
             Session.INSTANCE.setHighscores(highscores);
-            highscoreAdapter.notifyDataSetChanged();
+            setListViewHeightBasedOnChildren(highscoreList);
 
             getActivity().findViewById(R.id.highscoreFragment).invalidate();
             android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
