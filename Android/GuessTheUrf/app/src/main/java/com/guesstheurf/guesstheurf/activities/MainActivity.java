@@ -13,8 +13,8 @@ import com.guesstheurf.guesstheurf.activities.fragments.GameFragment;
 import com.guesstheurf.guesstheurf.activities.fragments.HighscoreFragment;
 
 public class MainActivity extends FragmentActivity implements HighscoreFragment.OnFragmentInteractionListener, GameFragment.OnFragmentInteractionListener {
-    MyPagerAdapter myPagerAdapter;
-    ViewPager viewPager;
+    private MyPagerAdapter myPagerAdapter;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

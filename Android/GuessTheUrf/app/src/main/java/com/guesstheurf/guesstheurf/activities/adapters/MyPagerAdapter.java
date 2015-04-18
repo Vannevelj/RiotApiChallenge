@@ -9,7 +9,7 @@ import com.guesstheurf.guesstheurf.activities.fragments.HighscoreFragment;
 
 public class MyPagerAdapter extends FragmentPagerAdapter {
     private GameFragment gameFragment = new GameFragment();
-    private HighscoreFragment highscoreFragment = new HighscoreFragment();
+    private HighscoreFragment highscoreFragment = new HighscoreFragment(); //TODO woops
 
     public MyPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);

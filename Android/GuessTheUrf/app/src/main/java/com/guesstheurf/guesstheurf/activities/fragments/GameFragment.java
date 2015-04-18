@@ -23,7 +23,6 @@ import com.guesstheurf.guesstheurf.tasks.SendScoreTask;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class GameFragment extends android.support.v4.app.Fragment {
     private OnFragmentInteractionListener mListener;
@@ -107,14 +106,12 @@ public class GameFragment extends android.support.v4.app.Fragment {
             Toast.makeText(getActivity(), "You suck!", Toast.LENGTH_SHORT).show();
         }
 
-        //TODO: send win to server
         Answer answer = new Answer(currentGame.getMatchId(), teamId);
         SendScoreTask task = new SendScoreTask();
         task.execute(answer);
 
         //Populate with new game
         getActivity().findViewById(R.id.gameFragment).invalidate();
-        currentGame = Session.INSTANCE.getNewGame(getActivity());
         android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.gameFragment, new GameFragment());
         transaction.commit();

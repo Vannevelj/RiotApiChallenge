@@ -2,9 +2,6 @@ package com.guesstheurf.guesstheurf.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * Created by jeroen on 17/04/2015.
- */
 public class AccessToken {
     @JsonProperty("access_token")
     private String accessToken;

@@ -38,7 +38,6 @@ public class HighscoreFragment extends android.support.v4.app.Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        updateHighscores();
     }
 
     @Override
@@ -95,12 +94,8 @@ public class HighscoreFragment extends android.support.v4.app.Fragment {
         try {
             List<Highscore> highscores = task.get(); // TODO: ASYNCHONRINICINIKRAZF?A PLEASE
             Session.INSTANCE.setHighscores(highscores);
+            highscoreAdapter.notifyDataSetChanged();
             setListViewHeightBasedOnChildren(highscoreList);
-
-            getActivity().findViewById(R.id.highscoreFragment).invalidate();
-            android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.highscoreFragment, new HighscoreFragment());
-            transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }

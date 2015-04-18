@@ -28,7 +28,7 @@
                 style="@style/DefaultButtonText"
                 android:background="@drawable/button_default_bg"
                 android:text="Refresh"
-                android:layout_below="@+id/highscore_list"/>
+                android:layout_below="@+id/highscore_list" />
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>
