@@ -27,13 +27,10 @@ import java.util.List;
 public class GameFragment extends android.support.v4.app.Fragment {
     private OnFragmentInteractionListener mListener;
     private Game currentGame;
+    private ChampionAdapter leftTeamAdapter, rightTeamAdapter;
 
-    public static GameFragment newInstance(Game game) {
-        GameFragment fragment = new GameFragment();
-        Bundle args = new Bundle();
-        args.putParcelable("currentGame", game);
-        fragment.setArguments(args);
-        return fragment;
+    public static GameFragment newInstance() {
+        return new GameFragment();
     }
 
     public GameFragment() {
@@ -68,12 +65,12 @@ public class GameFragment extends android.support.v4.app.Fragment {
         addButtonListeners(layout);
 
         ListView leftTeamList = (ListView) layout.findViewById(R.id.leftTeam);
-        ChampionAdapter leftTeamAdapter = new ChampionAdapter(getActivity(), R.layout.champion_info, leftTeam);
+        leftTeamAdapter = new ChampionAdapter(getActivity(), R.layout.champion_info, leftTeam);
         leftTeamList.setAdapter(leftTeamAdapter);
         setListViewHeightBasedOnChildren(leftTeamList);
 
         ListView rightTeamList = (ListView) layout.findViewById(R.id.rightTeam);
-        ChampionAdapter rightTeamAdapter = new ChampionAdapter(getActivity(), R.layout.champion_info, rightTeam);
+        rightTeamAdapter = new ChampionAdapter(getActivity(), R.layout.champion_info, rightTeam);
         rightTeamList.setAdapter(rightTeamAdapter);
         setListViewHeightBasedOnChildren(rightTeamList);
 
@@ -113,7 +110,7 @@ public class GameFragment extends android.support.v4.app.Fragment {
         //Populate with new game
         getActivity().findViewById(R.id.gameFragment).invalidate();
         android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.gameFragment, new GameFragment());
+        transaction.replace(R.id.gameFragment, GameFragment.newInstance());
         transaction.commit();
     }
 
