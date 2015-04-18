@@ -1,6 +1,7 @@
 package com.guesstheurf.guesstheurf.tasks;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.guesstheurf.guesstheurf.models.Answer;
 
@@ -15,10 +16,12 @@ public class SendScoreTask extends AsyncTask<Answer, Void, Void> {
     @Override
     protected Void doInBackground(Answer... params) {
         Answer answer = params[0];
+        Log.d("SENDSCORETASK", String.format("MatchId:%n\tWinningTeamId:%n", answer.getMatchId(), answer.getWinningTeamId()));
 
         try {
             HttpResponse response = Request.Post("http://guesstheurf.azurewebsites.net/api/games")
-                    .bodyForm(Form.form().add("matchid", answer.getMatchId())
+                    .bodyForm(Form.form()
+                            .add("matchid", answer.getMatchId())
                             .add("winningteamid", String.valueOf(answer.getWinningTeamId()))
                             .build())
                     .execute()

@@ -22,6 +22,7 @@ import com.guesstheurf.guesstheurf.tasks.SendScoreTask;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class GameFragment extends android.support.v4.app.Fragment {
     private OnFragmentInteractionListener mListener;
@@ -107,7 +108,8 @@ public class GameFragment extends android.support.v4.app.Fragment {
 
         //TODO: send win to server
         Answer answer = new Answer(currentGame.getMatchId(), teamId);
-        new SendScoreTask().execute(answer);
+        SendScoreTask task = new SendScoreTask();
+        task.execute(answer);
 
         //Populate with new game
         getActivity().findViewById(R.id.gameFragment).invalidate();
