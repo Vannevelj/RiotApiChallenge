@@ -3,6 +3,7 @@ package com.guesstheurf.guesstheurf.tasks;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,6 +42,8 @@ public class LoginTask extends AsyncTask<LoginInfo, Void, AccessToken> {
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 String content = EntityUtils.toString(response.getEntity());
                 return new ObjectMapper().readValue(content, AccessToken.class);
+            } else {
+                Log.e("LOGINTASK", response.getStatusLine().toString());
             }
         } catch (IOException e) {
             e.printStackTrace();

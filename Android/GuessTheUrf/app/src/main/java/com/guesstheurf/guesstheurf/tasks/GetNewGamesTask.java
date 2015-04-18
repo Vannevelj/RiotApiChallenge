@@ -2,6 +2,7 @@ package com.guesstheurf.guesstheurf.tasks;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -33,8 +34,9 @@ public class GetNewGamesTask extends AsyncTask<Void, Void, List<Game>> {
                 String content = EntityUtils.toString(response.getEntity());
                 ObjectMapper mapper = new ObjectMapper();
                 return mapper.readValue(content, mapper.getTypeFactory().constructCollectionType(ArrayList.class, Game.class));
+            } else {
+                Log.e("GETNEWGAMESTASK", response.getStatusLine().toString());
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }

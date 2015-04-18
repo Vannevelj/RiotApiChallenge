@@ -1,6 +1,7 @@
 package com.guesstheurf.guesstheurf.tasks;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.guesstheurf.guesstheurf.models.Highscore;
@@ -29,6 +30,8 @@ public class GetHighscoresTask extends AsyncTask<HighscoreRequestParameters, Voi
                 String content = EntityUtils.toString(response.getEntity());
                 ObjectMapper mapper = new ObjectMapper();
                 return mapper.readValue(content, mapper.getTypeFactory().constructCollectionType(ArrayList.class, Highscore.class));
+            } else {
+                Log.e("GETHIGHSCORESTASK", response.getStatusLine().toString());
             }
         } catch (IOException e) {
             e.printStackTrace();

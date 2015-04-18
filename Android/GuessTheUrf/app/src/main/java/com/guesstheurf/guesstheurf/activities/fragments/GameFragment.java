@@ -3,6 +3,7 @@ package com.guesstheurf.guesstheurf.activities.fragments;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -175,4 +176,8 @@ public class GameFragment extends android.support.v4.app.Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
+    @Override
+    public void finalize() {
+        Log.d("GAMEFRAGMENT", "finalized object with hashcode " + hashCode());
+    }
 }

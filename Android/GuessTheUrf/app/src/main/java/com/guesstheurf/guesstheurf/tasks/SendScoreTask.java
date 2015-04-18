@@ -12,11 +12,12 @@ import org.apache.http.client.fluent.Request;
 
 import java.io.IOException;
 
+//TODO: pass in the bearer token for authentication
 public class SendScoreTask extends AsyncTask<Answer, Void, Void> {
     @Override
     protected Void doInBackground(Answer... params) {
         Answer answer = params[0];
-        Log.d("SENDSCORETASK", String.format("MatchId:%n\tWinningTeamId:%n", answer.getMatchId(), answer.getWinningTeamId()));
+        Log.d("SENDSCORETASK", String.format("MatchId:%s\tWinningTeamId:%d", answer.getMatchId(), answer.getWinningTeamId()));
 
         try {
             HttpResponse response = Request.Post("http://guesstheurf.azurewebsites.net/api/games")
@@ -31,6 +32,7 @@ public class SendScoreTask extends AsyncTask<Answer, Void, Void> {
                 // Something went wrong -- Don't bother informing user
                 // User will be at the next answer anyway
                 // Assume user is at fault
+                Log.e("SENDSCORETASK", response.getStatusLine().toString());
             }
         } catch (IOException e) {
             e.printStackTrace();

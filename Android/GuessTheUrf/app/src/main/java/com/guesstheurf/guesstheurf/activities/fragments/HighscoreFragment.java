@@ -88,7 +88,7 @@ public class HighscoreFragment extends android.support.v4.app.Fragment {
     }
 
     private void updateHighscores() {
-        Log.d("AYOOOOOOO", "NOOOOOOO BAAAAAAAAD");
+        Log.d("HIGHSCOREFRAGMENT", "Updating highscores");
         HighscoreRequestParameters parameters = new HighscoreRequestParameters(1, 10);
         GetHighscoresTask task = new GetHighscoresTask();
         task.execute(parameters);
@@ -135,4 +135,8 @@ public class HighscoreFragment extends android.support.v4.app.Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
+    @Override
+    public void finalize() {
+        Log.d("HIGHSCOREFRAGMENT", "finalized object with hashcode " + hashCode());
+    }
 }
